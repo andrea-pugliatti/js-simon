@@ -46,7 +46,7 @@ body {
 	max-width: 80px;
 }
 #input button {
-	padding: 1.3rem;
+	padding: 0.6rem 1.3rem;
 	border: transparent;
 	border-radius: 5px;
 	color: white;
