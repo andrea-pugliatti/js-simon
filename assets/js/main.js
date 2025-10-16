@@ -20,7 +20,22 @@ const numbersElement = document.getElementById("numbers");
 const inputElement = document.getElementById("input");
 const scoreElement = document.getElementById("score");
 
+/**
+ * Returns a random number between a min number and a max number.
+ * @param {number} min
+ * @param {number} max
+ * @returns {number}
+ */
+const getRandomNumber = (min, max) =>
+	Math.floor(Math.random() * (max - min + 1)) + min;
+
 // Generate 5 random numbers
+const randomNumbersList = [];
+for (let i = 0; i < 5; i++) {
+	const randomNumber = getRandomNumber(0, 100);
+	randomNumbersList.push(randomNumber);
+}
+
 // Show the numbers to the user by printing them on screen
 
 // Add timer
