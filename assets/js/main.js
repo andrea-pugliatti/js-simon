@@ -156,15 +156,18 @@ setTimeout(() => {
 buttonElement.addEventListener("click", (event) => {
 	event.preventDefault();
 
+	// Retrieve values
 	const valuesList = [];
 	for (let i = 0; i < howManyNumbers; i++) {
 		const thisValue = Number(inputElementList[i].value);
 		valuesList.push(thisValue);
 	}
+
 	// Compare the numbers entered by the user with the generated ones
 	const score = compareLists(valuesList, randomNumbersList);
 	// Build and show the score in the score element
 	showScore(score);
+
 	// Hide form
 	inputElement.style.display = "none";
 	// Print on screen the score and which numbers were found
