@@ -20,6 +20,10 @@ const numbersElement = document.getElementById("numbers");
 const inputElement = document.getElementById("input");
 const scoreElement = document.getElementById("score");
 
+// Global values
+const gameTimer = 30000;
+const howManyNumbers = 5;
+
 /**
  * Returns a random number between a min number and a max number.
  * @param {number} min
@@ -31,25 +35,42 @@ const getRandomNumber = (min, max) =>
 
 // Generate 5 random numbers
 const randomNumbersList = [];
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < howManyNumbers; i++) {
 	const randomNumber = getRandomNumber(0, 100);
 	randomNumbersList.push(randomNumber);
 }
 
-// Show the numbers to the user by printing them on screen
-for (let i = 0; i < 5; i++) {
+// Print the numbers on screen
+for (let i = 0; i < howManyNumbers; i++) {
 	const thisNumber = randomNumbersList[i];
-	const li = document.createElement("li");
-	li.append(thisNumber);
-	console.log(li);
-	numbersElement.append(li);
+	const span = document.createElement("span");
+	span.append(`${thisNumber} `);
+	console.log(span);
+	numbersElement.append(span);
 }
+/**
+ * Creates a list of input elements, prints them and returns the list.
+ * @returns {Array}
+ */
+const buildForm = () => {
+	const list = [];
+	for (let i = 0; i < howManyNumbers; i++) {
+		const thisInput = document.createElement("input");
+		inputElement.append(thisInput);
+		list.push(thisInput);
+	}
+	return list;
+};
 
 // Add timer
-
-// When the timer runs out
-// Remove the numbers
-// Add the input boxes/form
+setTimeout(() => {
+	// When the timer runs out
+	// Remove the numbers
+	numbersElement.style.display = "none";
+	// Add the input boxes/form
+	const inputList = buildForm();
+	inputElement.style.display = "block";
+}, gameTimer);
 
 // Compare the numbers entered by the user with the generated ones
 
