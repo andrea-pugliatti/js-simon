@@ -1,0 +1,22 @@
+#numbers {
+	padding: 2rem;
+}
+
+#numbers span {
+	font-size: 2rem;
+}
+
+#input {
+	display: none;
+	padding: 2rem;
+}
+
+#input input {
+	margin: 2rem;
+	max-width: 30px;
+}
+
+#score {
+	display: none;
+	padding: 2rem;
+}
