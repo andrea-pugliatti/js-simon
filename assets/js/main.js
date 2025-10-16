@@ -98,8 +98,18 @@ setTimeout(() => {
 // On button click take the numbers from the inputs and save them
 buttonElement.addEventListener("click", (event) => {
 	event.preventDefault();
+
+	const valuesList = [];
+	for (let i = 0; i < howManyNumbers; i++) {
+		const thisValue = Number(inputElementList[i].value);
+		valuesList.push(thisValue);
+	}
+	// Compare the numbers entered by the user with the generated ones
+	// const score = compareLists();
+	// Hide form
+	inputElement.style.display = "none";
+	// Print on screen the score and which numbers were found
+	// buildScore();
+	// showScore();
+	scoreElement.style.display = "block";
 });
-
-// Compare the numbers entered by the user with the generated ones
-
-// Print on screen the score and which numbers were found
