@@ -81,6 +81,19 @@ const showForm = (list, button) => {
 	inputElement.append(button);
 };
 
+const showScore = (score) => {
+	const span = document.createElement("span");
+	const letter = score.length === 1 ? "o" : "i";
+	span.append(`Hai trovato ${score.length} numer${letter}!`);
+	if (score.length !== 0) {
+		span.append(` I numeri sono `);
+		for (let i = 0; i < score.length; i++) {
+			span.append(`${score[i]} `);
+		}
+	}
+	scoreElement.append(span);
+};
+
 /**
  * Returns the intersection between the two given arrays.
  * @param {Array} listA
@@ -123,10 +136,8 @@ buttonElement.addEventListener("click", (event) => {
 	}
 	// Compare the numbers entered by the user with the generated ones
 	const score = compareLists(valuesList, randomNumbersList);
-	// Build the elements in the score element
-	// buildScore(score);
-	// Show the elements
-	// showScore();
+	// Build and show the score in the score element
+	showScore(score);
 	// Hide form
 	inputElement.style.display = "none";
 	// Print on screen the score and which numbers were found
