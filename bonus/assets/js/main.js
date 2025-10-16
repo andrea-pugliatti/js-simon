@@ -123,6 +123,31 @@ const compareLists = (listA, listB) => {
 	return intersectionList;
 };
 
+/**
+ * Receives an array of numbers.
+ * Returns true if every number is an integer and unique.
+ * @param {Array} list
+ * @returns {boolean}
+ */
+const validateValues = (list) => {
+	const unique = [];
+
+	for (let i = 0; i < list.length; i++) {
+		const thisValue = list[i];
+		// Check that every value is an integer
+		if (!Number.isInteger(thisValue)) {
+			return true;
+		}
+		// Check that every number is unique
+		if (unique.includes(thisValue)) {
+			return true;
+		}
+		unique.push(thisValue);
+	}
+
+	return false;
+};
+
 // Select the elements
 const numbersElement = document.getElementById("numbers");
 const inputElement = document.getElementById("input");
@@ -163,13 +188,22 @@ buttonElement.addEventListener("click", (event) => {
 		valuesList.push(thisValue);
 	}
 
-	// Compare the numbers entered by the user with the generated ones
-	const score = compareLists(valuesList, randomNumbersList);
-	// Build and show the score in the score element
-	showScore(score);
+	// Validate the values in the list
+	const isBadInput = validateValues(valuesList);
 
-	// Hide form
-	inputElement.style.display = "none";
-	// Print on screen the score and which numbers were found
-	scoreElement.style.display = "block";
+	if (isBadInput) {
+		scoreElement.innerHTML = "Hai inserito dei valori inaspettati.";
+		scoreElement.style.display = "block";
+	} else {
+		scoreElement.innerHTML = "";
+		// Compare the numbers entered by the user with the generated ones
+		const score = compareLists(valuesList, randomNumbersList);
+		// Build and show the score in the score element
+		showScore(score);
+
+		// Hide form
+		inputElement.style.display = "none";
+		// Print on screen the score and which numbers were found
+		scoreElement.style.display = "block";
+	}
 });
