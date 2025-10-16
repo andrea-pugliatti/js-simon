@@ -152,9 +152,11 @@ const validateValues = (list) => {
 const numbersElement = document.getElementById("numbers");
 const inputElement = document.getElementById("input");
 const scoreElement = document.getElementById("score");
+const countdownElement = document.getElementById("countdown");
 
 // Global values
-const gameTimer = 3000;
+const gameSeconds = 3;
+const gameTimer = gameSeconds * 1000;
 const howManyNumbers = 5;
 
 // Generate 5 random numbers
@@ -167,7 +169,20 @@ showRandomNumbers(randomNumbersList);
 const inputElementList = buildForm();
 const buttonElement = buildButton();
 
-// Add timer
+// Set countdown
+let count = gameSeconds;
+countdownElement.textContent = `${count}`;
+const countdown = setInterval(() => {
+	count--;
+	countdownElement.textContent = `${count}`;
+
+	if (count <= 0) {
+		countdownElement.textContent = "";
+		clearInterval(countdown);
+	}
+}, 1000);
+
+// Set timer
 setTimeout(() => {
 	// When the timer runs out
 	// Remove the numbers

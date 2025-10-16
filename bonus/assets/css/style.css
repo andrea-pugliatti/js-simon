@@ -1,3 +1,8 @@
+#countdown {
+	font-weight: bolder;
+	font-size: 2rem;
+}
+
 #numbers {
 	padding: 2rem;
 }
@@ -13,7 +18,7 @@
 
 #input input {
 	margin: 2rem;
-	max-width: 30px;
+	max-width: 80px;
 }
 
 #score {
