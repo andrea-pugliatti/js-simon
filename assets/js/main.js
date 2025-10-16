@@ -81,6 +81,23 @@ const showForm = (list, button) => {
 	inputElement.append(button);
 };
 
+/**
+ * Returns the intersection between the two given arrays.
+ * @param {Array} listA
+ * @param {Array} listB
+ * @returns {Array}
+ */
+const compareLists = (listA, listB) => {
+	const intersectionList = [];
+	for (let i = 0; i < howManyNumbers; i++) {
+		const thisValue = listA[i];
+		if (listB.includes(thisValue)) {
+			intersectionList.push(thisValue);
+		}
+	}
+	return intersectionList;
+};
+
 // Build inputs
 const inputElementList = buildForm();
 const buttonElement = buildButton();
@@ -105,11 +122,13 @@ buttonElement.addEventListener("click", (event) => {
 		valuesList.push(thisValue);
 	}
 	// Compare the numbers entered by the user with the generated ones
-	// const score = compareLists();
+	const score = compareLists(valuesList, randomNumbersList);
+	// Build the elements in the score element
+	// buildScore(score);
+	// Show the elements
+	// showScore();
 	// Hide form
 	inputElement.style.display = "none";
 	// Print on screen the score and which numbers were found
-	// buildScore();
-	// showScore();
 	scoreElement.style.display = "block";
 });
