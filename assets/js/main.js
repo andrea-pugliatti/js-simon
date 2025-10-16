@@ -62,6 +62,10 @@ const buildForm = () => {
 	return list;
 };
 
+/**
+ * Builds and returns a button
+ * @returns {HTMLButtonElement}
+ */
 const buildButton = () => {
 	const buttonElement = document.createElement("button");
 	buttonElement.textContent = "Conferma";
@@ -69,7 +73,7 @@ const buildButton = () => {
 };
 
 /**
- * Receives a list and a button and appends them to inputElement
+ * Receives a list and a button and appends them to inputElement.
  * @param {Array} list
  * @param {HTMLButtonElement} list
  */
@@ -81,15 +85,20 @@ const showForm = (list, button) => {
 	inputElement.append(button);
 };
 
+/**
+ * Builds and shows the final score.
+ * @param {Array} score
+ */
 const showScore = (score) => {
 	const span = document.createElement("span");
 	const letter = score.length === 1 ? "o" : "i";
 	span.append(`Hai trovato ${score.length} numer${letter}!`);
 	if (score.length !== 0) {
-		span.append(` I numeri sono `);
+		span.append(` I numeri sono [ `);
 		for (let i = 0; i < score.length; i++) {
 			span.append(`${score[i]} `);
 		}
+		span.append(`]`);
 	}
 	scoreElement.append(span);
 };
