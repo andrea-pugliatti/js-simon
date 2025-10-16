@@ -15,15 +15,6 @@ Se l’utente ha inserito qualcosa di non valido, segnaliamolo visivamente nel f
 
 */
 
-// Select the elements
-const numbersElement = document.getElementById("numbers");
-const inputElement = document.getElementById("input");
-const scoreElement = document.getElementById("score");
-
-// Global values
-const gameTimer = 3000;
-const howManyNumbers = 5;
-
 /**
  * Returns a random number between a min number and a max number.
  * @param {number} min
@@ -33,21 +24,33 @@ const howManyNumbers = 5;
 const getRandomNumber = (min, max) =>
 	Math.floor(Math.random() * (max - min + 1)) + min;
 
-// Generate 5 random numbers
-const randomNumbersList = [];
-for (let i = 0; i < howManyNumbers; i++) {
-	const randomNumber = getRandomNumber(0, 100);
-	randomNumbersList.push(randomNumber);
-}
+/**
+ * Generates n random numbers
+ * @param {number} n
+ * @returns {Array}
+ */
+const generateNumberList = (n) => {
+	const list = [];
+	for (let i = 0; i < n; i++) {
+		const randomNumber = getRandomNumber(0, 100);
+		list.push(randomNumber);
+	}
+	return list;
+};
 
-// Print the numbers on screen
-for (let i = 0; i < howManyNumbers; i++) {
-	const thisNumber = randomNumbersList[i];
-	const span = document.createElement("span");
-	span.append(`${thisNumber} `);
-	console.log(span);
-	numbersElement.append(span);
-}
+/**
+ * Show the random numbers to the user
+ * @param {Array} list
+ */
+const showRandomNumbers = (list) => {
+	for (let i = 0; i < howManyNumbers; i++) {
+		const thisNumber = list[i];
+		const span = document.createElement("span");
+		span.append(`${thisNumber} `);
+		console.log(span);
+		numbersElement.append(span);
+	}
+};
 
 /**
  * Creates a list of input elements, prints them and returns the list.
@@ -119,6 +122,21 @@ const compareLists = (listA, listB) => {
 	}
 	return intersectionList;
 };
+
+// Select the elements
+const numbersElement = document.getElementById("numbers");
+const inputElement = document.getElementById("input");
+const scoreElement = document.getElementById("score");
+
+// Global values
+const gameTimer = 3000;
+const howManyNumbers = 5;
+
+// Generate 5 random numbers
+const randomNumbersList = generateNumberList(howManyNumbers);
+
+// Print the numbers on screen
+showRandomNumbers(randomNumbersList);
 
 // Build inputs
 const inputElementList = buildForm();
