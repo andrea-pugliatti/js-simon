@@ -37,6 +37,13 @@ for (let i = 0; i < 5; i++) {
 }
 
 // Show the numbers to the user by printing them on screen
+for (let i = 0; i < 5; i++) {
+	const thisNumber = randomNumbersList[i];
+	const li = document.createElement("li");
+	li.append(thisNumber);
+	console.log(li);
+	numbersElement.append(li);
+}
 
 // Add timer
 
