@@ -125,7 +125,7 @@ const compareLists = (listA, listB) => {
 
 /**
  * Receives an array of numbers.
- * Returns true if every number is an integer and unique.
+ * Returns false if every number is an integer and unique.
  * @param {Array} list
  * @returns {boolean}
  */
