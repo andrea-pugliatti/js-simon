@@ -21,7 +21,7 @@ const inputElement = document.getElementById("input");
 const scoreElement = document.getElementById("score");
 
 // Global values
-const gameTimer = 30000;
+const gameTimer = 3000;
 const howManyNumbers = 5;
 
 /**
@@ -48,6 +48,7 @@ for (let i = 0; i < howManyNumbers; i++) {
 	console.log(span);
 	numbersElement.append(span);
 }
+
 /**
  * Creates a list of input elements, prints them and returns the list.
  * @returns {Array}
@@ -56,11 +57,33 @@ const buildForm = () => {
 	const list = [];
 	for (let i = 0; i < howManyNumbers; i++) {
 		const thisInput = document.createElement("input");
-		inputElement.append(thisInput);
 		list.push(thisInput);
 	}
 	return list;
 };
+
+const buildButton = () => {
+	const buttonElement = document.createElement("button");
+	buttonElement.textContent = "Conferma";
+	return buttonElement;
+};
+
+/**
+ * Receives a list and a button and appends them to inputElement
+ * @param {Array} list
+ * @param {HTMLButtonElement} list
+ */
+const showForm = (list, button) => {
+	for (let i = 0; i < howManyNumbers; i++) {
+		const thisInput = list[i];
+		inputElement.append(thisInput);
+	}
+	inputElement.append(button);
+};
+
+// Build inputs
+const inputElementList = buildForm();
+const buttonElement = buildButton();
 
 // Add timer
 setTimeout(() => {
@@ -68,9 +91,14 @@ setTimeout(() => {
 	// Remove the numbers
 	numbersElement.style.display = "none";
 	// Add the input boxes/form
-	const inputList = buildForm();
+	showForm(inputElementList, buttonElement);
 	inputElement.style.display = "block";
 }, gameTimer);
+
+// On button click take the numbers from the inputs and save them
+buttonElement.addEventListener("click", (event) => {
+	event.preventDefault();
+});
 
 // Compare the numbers entered by the user with the generated ones
 
