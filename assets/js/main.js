@@ -16,6 +16,9 @@ Se l’utente ha inserito qualcosa di non valido, segnaliamolo visivamente nel f
 */
 
 // Select the elements
+const numbersElement = document.getElementById("numbers");
+const inputElement = document.getElementById("input");
+const scoreElement = document.getElementById("score");
 
 // Generate 5 random numbers
 // Show the numbers to the user by printing them on screen
