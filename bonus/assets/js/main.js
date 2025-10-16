@@ -207,7 +207,7 @@ buttonElement.addEventListener("click", (event) => {
 	const isBadInput = validateValues(valuesList);
 
 	if (isBadInput) {
-		scoreElement.innerHTML = "Hai inserito dei valori inaspettati.";
+		scoreElement.innerHTML = "Hai inserito dei valori inaspettati, riprova.";
 		scoreElement.style.display = "block";
 	} else {
 		scoreElement.innerHTML = "";
