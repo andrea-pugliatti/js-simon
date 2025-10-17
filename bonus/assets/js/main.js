@@ -155,9 +155,8 @@ const scoreElement = document.getElementById("score");
 const countdownElement = document.getElementById("countdown");
 
 // Global values
-const gameSeconds = 3;
-const gameTimer = gameSeconds * 1000;
-const howManyNumbers = 5;
+const gameTimer = 3;
+const howManyNumbers = 10;
 
 // Generate 5 random numbers
 const randomNumbersList = generateNumberList(howManyNumbers);
@@ -170,27 +169,25 @@ const inputElementList = buildForm();
 const buttonElement = buildButton();
 
 // Set countdown
-let count = gameSeconds;
+let count = gameTimer;
 countdownElement.textContent = `${count}`;
 const countdown = setInterval(() => {
 	count--;
 	countdownElement.textContent = `${count}`;
 
+	// When the timer runs out
 	if (count <= 0) {
+		// Remove the numbers
+		numbersElement.style.display = "none";
+		// Add the input boxes/form
+		showForm(inputElementList, buttonElement);
+		inputElement.style.display = "block";
+
+		// Clear countdown
 		countdownElement.textContent = "";
 		clearInterval(countdown);
 	}
 }, 1000);
-
-// Set timer
-setTimeout(() => {
-	// When the timer runs out
-	// Remove the numbers
-	numbersElement.style.display = "none";
-	// Add the input boxes/form
-	showForm(inputElementList, buttonElement);
-	inputElement.style.display = "block";
-}, gameTimer);
 
 // On button click take the numbers from the inputs and save them
 buttonElement.addEventListener("click", (event) => {
@@ -207,10 +204,11 @@ buttonElement.addEventListener("click", (event) => {
 	const isBadInput = validateValues(valuesList);
 
 	if (isBadInput) {
-		scoreElement.innerHTML = "Hai inserito dei valori inaspettati, riprova.";
+		scoreElement.textContent = "Hai inserito dei valori inaspettati, riprova.";
 		scoreElement.style.display = "block";
 	} else {
-		scoreElement.innerHTML = "";
+		// Remove content if present
+		scoreElement.textContent = "";
 		// Compare the numbers entered by the user with the generated ones
 		const score = compareLists(valuesList, randomNumbersList);
 		// Build and show the score in the score element
