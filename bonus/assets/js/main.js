@@ -48,7 +48,7 @@ const generateNumberList = (n, min, max) => {
  * @param {Array} list
  */
 const showRandomNumbers = (list) => {
-	for (let i = 0; i < howManyNumbers; i++) {
+	for (let i = 0; i < list.length; i++) {
 		const thisNumber = list[i];
 		const span = document.createElement("span");
 		span.append(`${thisNumber} `);
@@ -59,11 +59,12 @@ const showRandomNumbers = (list) => {
 
 /**
  * Creates a list of input elements, prints them and returns the list.
+ * @param {number} sizeList Number of inputs to print
  * @returns {Array}
  */
-const buildForm = () => {
+const buildForm = (sizeList) => {
 	const list = [];
-	for (let i = 0; i < howManyNumbers; i++) {
+	for (let i = 0; i < sizeList; i++) {
 		const thisInput = document.createElement("input");
 		list.push(thisInput);
 	}
@@ -85,8 +86,8 @@ const buildButton = () => {
  * @param {Array} list
  * @param {HTMLButtonElement} list
  */
-const showForm = (list, button) => {
-	for (let i = 0; i < howManyNumbers; i++) {
+const showForm = (list, sizeList, button) => {
+	for (let i = 0; i < sizeList; i++) {
 		const thisInput = list[i];
 		inputElement.append(thisInput);
 	}
@@ -119,7 +120,7 @@ const showScore = (score) => {
  */
 const compareLists = (listA, listB) => {
 	const intersectionList = [];
-	for (let i = 0; i < howManyNumbers; i++) {
+	for (let i = 0; i < listA.length; i++) {
 		const thisValue = listA[i];
 		if (listB.includes(thisValue)) {
 			intersectionList.push(thisValue);
@@ -170,7 +171,7 @@ const randomNumbersList = generateNumberList(howManyNumbers, 0, 100);
 showRandomNumbers(randomNumbersList);
 
 // Build inputs
-const inputElementList = buildForm();
+const inputElementList = buildForm(howManyNumbers);
 const buttonElement = buildButton();
 
 // Set countdown
@@ -185,7 +186,7 @@ const countdown = setInterval(() => {
 		// Remove the numbers
 		numbersElement.style.display = "none";
 		// Add the input boxes/form
-		showForm(inputElementList, buttonElement);
+		showForm(inputElementList, howManyNumbers, buttonElement);
 		inputElement.style.display = "block";
 
 		// Clear countdown
