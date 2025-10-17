@@ -29,11 +29,16 @@ const getRandomNumber = (min, max) =>
  * @param {number} n
  * @returns {Array}
  */
-const generateNumberList = (n) => {
+const generateNumberList = (n, min, max) => {
 	const list = [];
 	for (let i = 0; i < n; i++) {
-		const randomNumber = getRandomNumber(0, 100);
-		list.push(randomNumber);
+		const randomNumber = getRandomNumber(min, max);
+		// Check that the generated number is not repeated
+		if (!list.includes(randomNumber)) {
+			list.push(randomNumber);
+		} else {
+			i--;
+		}
 	}
 	return list;
 };
@@ -159,7 +164,7 @@ const gameTimer = 3;
 const howManyNumbers = 10;
 
 // Generate 5 random numbers
-const randomNumbersList = generateNumberList(howManyNumbers);
+const randomNumbersList = generateNumberList(howManyNumbers, 0, 100);
 
 // Print the numbers on screen
 showRandomNumbers(randomNumbersList);
