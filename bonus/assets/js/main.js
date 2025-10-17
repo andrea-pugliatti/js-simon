@@ -52,7 +52,7 @@ const showRandomNumbers = (list) => {
 		const thisNumber = list[i];
 		const span = document.createElement("span");
 		span.append(`${thisNumber} `);
-		console.log(span);
+		console.log(span.textContent);
 		numbersElement.append(span);
 	}
 };
@@ -135,19 +135,23 @@ const compareLists = (listA, listB) => {
  * @param {Array} list
  * @returns {boolean}
  */
-const validateValues = (list) => {
+const validateValues = (list, elementList) => {
 	const unique = [];
 
 	for (let i = 0; i < list.length; i++) {
 		const thisValue = list[i];
+		const element = elementList[i];
 		// Check that every value is an integer
 		if (!Number.isInteger(thisValue)) {
+			element.classList.add("danger");
 			return true;
 		}
 		// Check that every number is unique
 		if (unique.includes(thisValue)) {
+			element.classList.add("danger");
 			return true;
 		}
+		element.classList.remove("danger");
 		unique.push(thisValue);
 	}
 
@@ -162,7 +166,7 @@ const countdownElement = document.getElementById("countdown");
 
 // Global values
 const gameTimer = 3;
-const howManyNumbers = 10;
+const howManyNumbers = 5;
 
 // Generate 5 random numbers
 const randomNumbersList = generateNumberList(howManyNumbers, 0, 100);
@@ -207,7 +211,7 @@ buttonElement.addEventListener("click", (event) => {
 	}
 
 	// Validate the values in the list
-	const isBadInput = validateValues(valuesList);
+	const isBadInput = validateValues(valuesList, inputElementList);
 
 	if (isBadInput) {
 		scoreElement.textContent = "Hai inserito dei valori inaspettati, riprova.";
@@ -221,7 +225,7 @@ buttonElement.addEventListener("click", (event) => {
 		showScore(score);
 
 		// Hide form
-		inputElement.style.display = "none";
+		// inputElement.style.display = "none";
 		// Print on screen the score and which numbers were found
 		scoreElement.style.display = "block";
 	}
